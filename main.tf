@@ -23,6 +23,7 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
+    # original is: Name = "ExampleAppServerInstance", I updated this part when I redefine the instance name in variables.tf
     Name = var.instance_name
   }
 }
