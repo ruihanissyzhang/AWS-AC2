@@ -1,1 +1,1 @@
-# AWS-define input variables and output data on the infrastructure
+# AWS-define input variables and output data on EC2
