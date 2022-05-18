@@ -32,17 +32,23 @@ Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 39 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+# install awscli
 ruihan@ruihan-VirtualBox:~$ sudo apt install awscli
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 awscli is already the newest version (1.22.34-1).
 0 upgraded, 0 newly installed, 0 to remove and 39 not upgraded.
+
+# install terraform but failed
 ruihan@ruihan-VirtualBox:~$ sudo apt install terraform
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 E: Unable to locate package terraform
+
+# check if I installed the terraform, the answer is yes
 ruihan@ruihan-VirtualBox:~$ terraform -help
 Usage: terraform [global options] <subcommand> [args]
 
@@ -82,16 +88,24 @@ Global options (use these before the subcommand, if any):
                 given subcommand.
   -help         Show this help output, or the help for a specified subcommand.
   -version      An alias for the "version" subcommand.
+  
+# input the access key id and secret access key
 ruihan@ruihan-VirtualBox:~$ aws configure
 AWS Access Key ID [****************T36Z]: AKIAYKZRLC35MNE7T36Z
 AWS Secret Access Key [****************55LW]: 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
 Default region name [us-east-1]: us-east-1
 Default output format [None]:
+
+#export access key
 ruihan@ruihan-VirtualBox:~$ export AWS_ACCESS_KEY_ID="AKIAYKZRLC35MNE7T36Z"
 ruihan@ruihan-VirtualBox:~$ export AWS_SECRET_ACCESS_KEY="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"
 ruihan@ruihan-VirtualBox:~$ export AWS_DEFAULT_REGION="us-east-1"
+
+# Create and open a directory
 ruihan@ruihan-VirtualBox:~$ mkdir learn-terraform-aws-instance
 ruihan@ruihan-VirtualBox:~$ cd learn-terraform-aws-instance
+
+# open a file named main.tf and edit in it
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ touch main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ nano main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ cat main.tf
@@ -119,6 +133,8 @@ resource "aws_instance" "app_server" {
     Name = "ExampleAppServerInstance"
   }
 }
+
+# initialize the terraform
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform init
 
 Initializing the backend...
@@ -142,10 +158,13 @@ should now work.
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
+
+# Format and validate my configuration
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform fmt
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform validate
 Success! The configuration is valid.
 
+# apply the configuration
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform apply
 
 Terraform used the selected providers to generate the following execution
@@ -394,6 +413,8 @@ aws_instance.app_server: Still creating... [50s elapsed]
 aws_instance.app_server: Creation complete after 56s [id=i-0be7eaf5327045dbb]
 
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+# show the current state
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform show
 # aws_instance.app_server:
 resource "aws_instance" "app_server" {
@@ -467,7 +488,11 @@ resource "aws_instance" "app_server" {
         volume_type           = "standard"
     }
 }
+
+# edit in the main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ nano main.tf
+
+# apply the changes
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform apply
 aws_instance.app_server: Refreshing state... [id=i-0be7eaf5327045dbb]
 
@@ -609,6 +634,8 @@ aws_instance.app_server: Still creating... [1m20s elapsed]
 aws_instance.app_server: Creation complete after 1m27s [id=i-0df0a763aaf96db1d]
 
 Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+# check the updated file of main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ cat main.tf
 terraform {
   required_providers {
@@ -634,7 +661,11 @@ resource "aws_instance" "app_server" {
     Name = "ExampleAppServerInstance"
   }
 }
+
+# create a file named variables.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ nano variables.tf
+
+# update in the main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ nano main.tf
 ruihan@ruihan-VirtualBox:~/learn-terraform-aws-instance$ terraform apply
 aws_instance.app_server: Refreshing state... [id=i-0df0a763aaf96db1d]
