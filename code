@@ -91,14 +91,14 @@ Global options (use these before the subcommand, if any):
   
 # input the access key id and secret access key
 ruihan@ruihan-VirtualBox:~$ aws configure
-AWS Access Key ID [****************T36Z]: AKIAYKZRLC35MNE7T36Z
-AWS Secret Access Key [****************55LW]: 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
+AWS Access Key ID [****************T36Z]: AK****ZRLC3***E7T36Z
+AWS Secret Access Key [****************55LW]: 3qgjx9g****H/kcF****IS4H*****Mz055LW
 Default region name [us-east-1]: us-east-1
 Default output format [None]:
 
 #export access key
-ruihan@ruihan-VirtualBox:~$ export AWS_ACCESS_KEY_ID="AKIAYKZRLC35MNE7T36Z"
-ruihan@ruihan-VirtualBox:~$ export AWS_SECRET_ACCESS_KEY="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"
+ruihan@ruihan-VirtualBox:~$ export AWS_ACCESS_KEY_ID="AKI******AYKZR********E7T36Z"
+ruihan@ruihan-VirtualBox:~$ export AWS_SECRET_ACCESS_KEY="3qgjx9g******IS4H******Mz055LW"
 ruihan@ruihan-VirtualBox:~$ export AWS_DEFAULT_REGION="us-east-1"
 
 # Create and open a directory
